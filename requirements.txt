@@ -83,7 +83,6 @@ mysql==0.0.3
 mysql-connector-python==8.2.0
 mysqlclient==2.2.0
 networkx==3.2.1
-numpy==1.26.2
 oauthlib==3.2.2
 olefile==0.46
 openai==0.28.0
