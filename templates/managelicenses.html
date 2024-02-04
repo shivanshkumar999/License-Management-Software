@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Manage Licenses</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    </head>
+    <script>
+        $(document).ready(function(){
+            $('button').click(function(){
+                var username = $('#username').val();
+                var license_number = $('#license_number').val();
+                // var license_valid = $('#license_valid').val();
+                var buttonclicked = this.id;
+
+                $.ajax({
+                    url:"/admindash/managelicenses/modifylicense",
+                    method :'POST',
+                    data:{'username':username,'license_number':license_number,'buttonclicked':buttonclicked},
+                    success:function(res){
+                        $("#modifyoutput").html('<p>' + res.replaceAll(',','<br>') + '</p>');
+                    }
+                });
+
+            })
+            setInterval( function() {
+                        $(".licenses").load(location.href + " .table_l");
+                        $("#output").load(location.href + " .p");
+                    }, 2000 );
+        })
+    </script>
+    <body style="text-align: center;">
+        <div class="container-fluid" id="header">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>Welcome, {{admin_id}}</h1>
+                        <p class="{% if admin_role=='CEO' %}visible{% else %}invisible{% endif %}">You are a <span style="color: red;"><b>{{admin_role}}</b></span>, you can add, delete, modify and validate licenses.</p>
+                        <p class="{% if admin_role=='Manager' %}visible{% else %}invisible{% endif %}">You are a <span style="color: red;"><b>{{admin_role}}</b></span>, you can only add, modify and validate licenses. You cannot delete Licenses.</p>
+                        <div>
+                            <a href="/admindash">Go Back</a>
+                            <a href="/logout">Logout</a>
+                        </div>    
+                    </div>
+            <div id="output" class="col-md-6">
+                        {% for entry in stats|items %}
+                        <p class="p"><span style="font-weight: bold;">{{entry[0]}}</span> : {{entry[1]}}</p>
+                        {% endfor %}
+            </div>
+        </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+            <div>
+                <form id="form">
+                    <input type="text" name="username" id="username" placeholder="Username" required>
+                    <input type="text" name="license_number" id="license_number" placeholder="License Number"><br><br>
+                    <!-- <input type="text" name="license_valid" id="license_valid" placeholder="Validate License" id=""> -->
+                    <button type="button" id="get_l">Search License</button>
+                    <button type="button" id="add">Add License</button>
+                    <button type="button" id="delete" {% if admin_role=='Manager' %}disabled{% endif %}>Delete License</button>
+                    <button type="button" id="update">Update License</button>
+                    <button type="button" id="validate">Validate License</button>
+                </form>
+            </div>
+            <div id="modifyoutput">
+            </div>
+            </div>
+            
+            <div class="col-md-6">
+
+                <div class="licenses">
+                    <div class="table_l">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Username</th>
+                            <th scope="col">Last Login</th>
+                            <th scope="col">License No.</th>
+                            <th scope="col">License Valid</th>
+                        </tr>    
+                    </thead>    
+                    {%for license in licenses%}
+                        <tr>
+                            <td>{{license.username}}</td>
+                            <td>{{license.last_login}}</td>
+                            <td>{{license.license_number}}</td>
+                            <td>{{license.license_valid}}</td>
+                        </tr>    
+                        {%endfor%}
+                    </table>    
+                    </div>
+                </div>    
+            </div>    
+    </div>
+    </div>
+    </body>
+</html>

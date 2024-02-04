@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <title>LMS</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+    <style>
+        #validateform{
+            display: none;
+        }
+
+    </style>
+
+    <script>
+    $(document).ready(function(){
+        $('#sendvalidationotp').click(function(){
+            var buttonclicked = this.id;
+            var validateform = document.getElementById('validateform');
+
+            validateform.style.display = 'block';
+
+            $.ajax({
+                url:"/otpverification",
+                method :'POST',
+                data:{'buttonclicked':buttonclicked},
+                success:function(res){
+                    $("#output").html('<p>' + res + '</p>');
+                }
+            });
+
+        })
+    })
+    $(document).ready(function(){
+        $('button').click(function(){
+            var otp = $('#otp').val();
+            var buttonclicked = this.id;
+
+            $.ajax({
+                url:"/otpverification",
+                method :'POST',
+                data:{'otp':otp, 'buttonclicked':buttonclicked},
+                success:function(res){
+                    $("#output").html('<p>' + res + '</p>');
+                }
+            });
+
+        })
+    })
+    
+    </script>
+
+    <body>
+        <div>
+            <h1>Welcome, {{name}}</h1>
+            <p class="logintime">Your logged in at: <b>{{logintime}}</b></p>
+            <p class="userip">Your IP is: <b>{{user_ip}}</b></p>            
+            <p>Your login session will end in 5 minutes</p>
+        </div>
+        
+        <div>
+            <a href="/userdash/checklicensevalidity">Check License Validity</a>
+            <a href="/logout">Logout</a>
+        </div>
+        
+        <div id="output">
+            {% if 'Sorry' in output %}
+            <p>{{output}} <button id="sendvalidationotp">Validate Now</button></p>
+            {% else %}
+            <p>{{output}}</p>
+            {% endif %}
+        </div>
+        
+        <div id="validateform">
+            <form enctype="multipart/form-data">
+                <h4>License Validation</h4>
+                    <input type="text" name="otp" id="otp">
+                    <button type="button" id="ValidateLicense">Validate License</button>
+                </form>
+            </div>
+
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <title>LMS</title>
+    </head>
+    <body>
+        <form action="/create" method="post" enctype="multipart/form-data">
+            <input type="text" name="username" id="" placeholder="Username" required>
+            <input type="email" name="email" id="" placeholder="Email" required>
+            <input type="password" name="password" id="" placeholder="Password" required>
+            <input type="password" name="repeat_password" id="" placeholder="Password" required>
+            <input type="text" name="license_number" id="" required placeholder="License Number">
+            <input type="submit" value="Register License">
+        </form>
+
+        {% with msgs = get_flashed_messages() %}
+        {% for msg in msgs %}
+        {{ msg }}
+        {% endfor %}
+        {% endwith %}
+         
+    </body>
+</html>

@@ -1,0 +1,94 @@
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+div{
+    /* text-align: center; */
+    padding: 10px;
+}
+
+div a{
+    border: 2px solid black;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.logs{
+    color: white;
+    background-color: black;
+    font-weight: bold;
+    padding: 10px;
+    width: 50%;
+    float: right;
+    overflow: auto;
+    height: 400px;
+    text-align: left;
+}
+
+th{
+    padding: 10px;
+    color: white;
+    background-color: black;
+}
+
+td{
+    border: 2px solid black;
+    padding: 10px;
+    text-align: left;
+}
+
+pre{
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.logs{
+    overflow: scroll;
+}
+
+.logcontainer{
+    padding: 10px;
+}
+
+hr{
+    animation: hrani 5s infinite ease;
+    border: 3px solid white;
+    float: left;
+}
+
+@keyframes hrani {
+    0% {border: 3px solid white; 
+    width: 0%;}
+    100%{border: 3px solid red;
+    width: 100%;}
+}
+
+.visible{
+    display: block;
+}
+.invisible{
+    display: none;
+}
+
+.licenses{
+    padding: 0;
+    margin: 0;
+    height: 350px;
+    overflow: auto;
+}
+
+#jumbotron div{
+    width: 100%;
+    display: block;
+}
+
+#jumbotron{
+    display: flex;
+}
+
+#header{
+    background-color: antiquewhite;
+}

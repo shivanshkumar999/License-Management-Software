@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{admin_id}}'s Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+                $(document).ready(function () {
+            
+                    setInterval( function() {
+                        $(".licenses").load(location.href + " .table_l");
+                        $('.logcontainer').scrollTop = $('.logcontainer').scrollHeight;
+                        $(".logcontainer").load(location.href + " .logs");
+                    }, 5000 );
+            
+                });
+                
+        </script>
+    </head>
+    <body>
+
+        <div id="jumbotron">
+            <div>
+            <h1>Welcome, <b>{{admin_id}}</b></h1>
+            <p>Role: <b>{{admin_role}}</b></p>
+            <p>Last Login : <b>{{logintime}}</b></p>
+            <p>Your IP : <b>{{admin_ip}}</b></p>
+            </div>
+            <div id="output">
+                {% for entry in stats|items %}
+                <p class="p"><span style="font-weight: bold;">{{entry[0]}}</span> : {{entry[1]}}</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div>
+            <a href="/admindash/managelicenses">Manage Licenses</a>
+            <a href="/logout">Logout</a>
+        </div>
+
+        <div>
+            {% for entry in output %}
+            {{entry}}
+            {% endfor %}
+        </div>
+        
+        <!-- <span style="float: right; "><a href="logs\system_logs.log" download="System_logs.txt" style="color: lightskyblue;">Full Logs</a></span> -->
+
+        <div class="logcontainer">
+            <div class="logs">
+                <span style="float: right;"><a href="/admindash" style="border:2px solid orange;color: orange;">Refresh logs</a></span>
+                <p style="color: lightgreen;">Logs Refreshes every 5 seconds</p>
+                <hr><br>
+            {% for log in logs %}
+            <pre>{{log}}</pre>
+            {% endfor %}
+        </div>
+        </div>
+        <div class="licenses">
+            <div class="table_l">
+            <table>
+                <tr>
+                    <th>Username</th>
+                    <th>Last Login</th>
+                    <th>License No.</th>
+                    <th>License Valid</th>
+                </tr>
+            {%for license in licenses%}
+                <tr>
+                    <td>{{license.username}}</td>
+                    <td>{{license.last_login}}</td>
+                    <td>{{license.license_number}}</td>
+                    <td>{{license.license_valid}}</td>
+                </tr>
+                {%endfor%}
+            </table>
+            </div>
+        </div>
+
+
+    </body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <title>LMS</title>
+    </head>
+    <body>
+        <!-- {% with msgs = get_flashed_messages() %}
+        {% for msg in msgs %}
+            {{ msg }}
+        {% endfor %}
+        {% endwith %} -->
+        <!-- {{output}} -->
+
+        <!-- <form action="/validate" method="GET">
+            <input type="text" name="username">
+            <input type="submit" value="validate">
+        </form>
+        <hr>
+        <form action="/create" method="POST">
+            <input type="text" name="username">
+            <input type="password" name="password">
+
+            <input type="submit" value="Create">
+        </form> -->
+
+        <div>
+            <a href="/adminlogin">
+                Admin Login
+            </a>
+            <a href="/userlogin">
+                User Login
+            </a>
+        </div>
+
+        <div>
+            {{output}}
+        </div>
+
+    </body>
+</html>

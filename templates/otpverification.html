@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <title>LMS - OTP verification</title>
+    </head>
+    <body>
+        <form action="/otpverification" method="post" enctype="multipart/form-data">
+            <input type="text" name="otp" id="" placeholder="Enter OTP" >
+            <input type="submit" value="Verify OTP">
+        </form>
+
+        {% with msgs = get_flashed_messages() %}
+        {% for msg in msgs %}
+        {{ msg }}
+        {% endfor %}
+        {% endwith %}
+        
+            
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <title>LMS</title>
+    </head>
+    <body>
+        <form action="/createadmin" method="post" enctype="multipart/form-data">
+            <input type="text" name="admin_id" id="" placeholder="admin_id" required>
+            <input type="email" name="email" id="" placeholder="Email" required>
+            <input type="password" name="password" id="" placeholder="Password" required>
+            <input type="password" name="repeat_password" id="" placeholder="Password" required>
+            <select name="admin_role" id="">
+                <option value="CEO">CEO</option>
+                <option value="Manager">Manager</option>
+            </select>
+            <input type="submit" value="Register Admin">
+        </form>
+
+        {% with msgs = get_flashed_messages() %}
+        {% for msg in msgs %}
+        {{ msg }}
+        {% endfor %}
+        {% endwith %}
+         
+    </body>
+</html>

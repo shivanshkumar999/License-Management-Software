@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        <title>LMS</title>
+    </head>
+    <body>
+        <form action="/userlogincheck" method="post" enctype="multipart/form-data">
+            <input type="text" name="username" id="" placeholder="Username" required>
+            <input type="password" name="password" id="" placeholder="Password" >
+            <input type="submit" value="Login">
+            <a href="/registeruser">Register New License</a>
+        </form>
+
+        {% with msgs = get_flashed_messages() %}
+        {% for msg in msgs %}
+        {{ msg }}
+        {% endfor %}
+        {% endwith %}
+        
+            
+    </body>
+</html>
