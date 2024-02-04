@@ -25,16 +25,13 @@ compressed-rtf==1.0.6
 confection==0.1.4
 contourpy==1.2.0
 cryptography==42.0.0
-<<<<<<< HEAD
 cv==1.0.0
 cycler==0.12.1
 cymem==2.0.8
 decorator==5.1.1
 distlib==0.3.7
 docopt==0.6.2
-=======
 dl==0.1.0
->>>>>>> f2d92853e20f1349f9577679a847c5479e9faeac
 docutils==0.20.1
 docx2txt==0.8
 ebcdic==1.1.1
@@ -102,12 +99,10 @@ openai==0.28.0
 opencv-python==4.8.1.78
 opt-einsum==3.3.0
 packaging==23.2
-=======
 keyring==24.3.0
 lockfile==0.12.2
 mock==5.1.0
 numpy==1.26.3
->>>>>>> f2d92853e20f1349f9577679a847c5479e9faeac
 pandas==2.2.0
 parso==0.8.3
 pdfminer.six==20191110
