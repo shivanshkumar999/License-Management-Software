@@ -2,7 +2,6 @@ attr==0.3.2
 ConfigParser==6.0.0
 contextlib2==21.6.0
 cryptography==42.0.0
-Cython==0.29.36
 dl==0.1.0
 docutils==0.20.1
 Flask==3.0.2
